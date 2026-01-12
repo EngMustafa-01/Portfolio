@@ -51,7 +51,7 @@ function App() {
   }
 
   return (
-    <Router basename="/Profile">
+    <Router basename="/Pro">
       <div className="relative min-h-screen">
         <div className="noise-overlay" />
         <StarBackground />
