@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #FF0000;
+  --color-accent: #FF0000;
+  
+  --font-sans: 'Inter', sans-serif;
+  --font-heading: 'Poppins', sans-serif;
+
+  --animate-fade-in: fade-in 1s ease-out;
+  --animate-slide-up: slide-up 0.8s ease-out forwards;
+  --animate-pulse-slow: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  
+  @keyframes fade-in {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  
+  @keyframes slide-up {
+    0% { transform: translateY(20px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+}
+
+/* Base Styles & Themes */
+:root {
+  --bg-dark: linear-gradient(to bottom, #000000, #3D0000);
+  --text-primary: #f5f5f5; /* Off-white for readability */
+}
+
+body {
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  background: var(--bg-dark);
+  color: var(--text-primary);
+  /* Enforce global font styles here */
+  font-family: 'Inter', sans-serif;
+}
+
+/* Star Container - Always Visible */
+.stars-wrapper {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  display: block; /* Always visible */
+}
+
+/* Noise Texture Overlay */
+.noise-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Glassmorphism Utilities */
+.glass-panel {
+  background: rgba(20, 0, 0, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.glass-panel-hover {
+  transition: all 0.3s ease;
+}
+
+.glass-panel-hover:hover {
+  background: rgba(40, 0, 0, 0.5);
+  border-color: rgba(255, 0, 0, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(149, 1, 1, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Custom Utilities */
+.text-gradient {
+  /* Aggressive Red Gradient */
+  background: linear-gradient(to right, #FF0000, #ff4d4d, #950101); 
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 30px rgba(255, 0, 0, 0.3); /* Subtle glow for gradient text */
+}
+
+/* Selection Color */
+::selection {
+  background: rgba(149, 1, 1, 0.5);
+  color: #ffffff;
+}
+
+/* Star Animations */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes shooting-star {
+  0% { transform: translateX(0) translateY(0) rotate(-45deg); opacity: 1; }
+  100% { transform: translateX(-1500px) translateY(1500px) rotate(-45deg); opacity: 0; }
+}
+
+.star {
+  position: absolute;
+  border-radius: 50%;
+  background: white;
+  opacity: 0.8;
+}
+
+.shooting-star {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: white;
+  border-radius: 50%;
+  /* Brighter glow for shooting star - Red tinted glow */
+  box-shadow: 0 0 0 4px rgba(255, 0, 0, 0.1), 0 0 0 8px rgba(255, 0, 0, 0.1), 0 0 20px rgba(255, 255, 255, 1);
+  animation: shooting-star 2s linear infinite;
+  z-index: 10;
+}
+
+.shooting-star::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 400px; /* Longer trail */
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255,255,255,1), transparent);
+}
+
+/* Custom Scrollbar - Refined */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0a0000; }
+::-webkit-scrollbar-thumb { 
+  background: #3D0000; 
+  border-radius: 9999px;
+  border: 1px solid #000000;
+}
+::-webkit-scrollbar-thumb:hover { background: #950101; }
