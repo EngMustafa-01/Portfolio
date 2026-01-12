@@ -51,7 +51,7 @@ function App() {
   }
 
   return (
-    <Router basename="/Pro">
+    <Router basename={`/${import.meta.env.VITE_APP_NAME}`}>
       <div className="relative min-h-screen">
         <div className="noise-overlay" />
         <StarBackground />
