@@ -19,7 +19,7 @@ function App() {
 
   if (loading) {
     return (
-      <div className="fixed inset-0 flex items-center justify-center dark bg-gradient-to-br from-near-black to-dark-gray">
+      <div className="fixed inset-0 flex items-center justify-center dark bg-linear-to-br from-near-black to-dark-gray">
         <motion.div
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
